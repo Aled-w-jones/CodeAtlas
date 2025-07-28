@@ -1,0 +1,21 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CodeBrowser from '../../components/CodeBrowser.svelte';
+import { getDirectoryListing } from '../../utils/file-helpers';
+
+const listing = getDirectoryListing();
+---
+
+<Layout title="File Browser - PythonMap MK2">
+  <div class="h-screen flex flex-col">
+    <div class="flex-1 overflow-hidden">
+      <CodeBrowser 
+        client:load
+        directories={listing.directories}
+        files={listing.files}
+        currentPath={listing.currentPath}
+        currentFile={null}
+      />
+    </div>
+  </div>
+</Layout>

@@ -1,0 +1,81 @@
+---
+export interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = 'PythonMap MK2 - High-performance code browser with Astro and Svelte' } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+  </head>
+  <body class="bg-gray-900 text-gray-100 font-mono">
+    <div class="min-h-screen flex flex-col">
+      <header class="bg-gray-800 border-b border-gray-700 px-4 py-3">
+        <div class="flex items-center justify-between">
+          <h1 class="text-xl font-bold text-blue-400">
+            <a href="/" class="hover:text-blue-300 transition-colors">PythonMap MK2</a>
+          </h1>
+          <nav class="flex items-center gap-4">
+            <a href="/browser" class="text-gray-300 hover:text-white transition-colors">Browser</a>
+            <a href="/notepads" class="text-gray-300 hover:text-white transition-colors">Notepads</a>
+          </nav>
+        </div>
+      </header>
+      
+      <main class="flex-1">
+        <slot />
+      </main>
+      
+      <footer class="bg-gray-800 border-t border-gray-700 px-4 py-2 text-center text-gray-400 text-sm">
+        Built with <span class="text-purple-400">Astro</span> + <span class="text-orange-400">Svelte</span> for maximum performance
+      </footer>
+    </div>
+  </body>
+</html>
+
+<style is:global>
+  html {
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', Consolas, monospace;
+  }
+  
+  body {
+    margin: 0;
+    padding: 0;
+  }
+  
+  * {
+    box-sizing: border-box;
+  }
+  
+  /* VS Code-inspired scrollbars */
+  ::-webkit-scrollbar {
+    width: 14px;
+    height: 14px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #2d2d2d;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #424242;
+    border-radius: 7px;
+    border: 3px solid #2d2d2d;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #4f4f4f;
+  }
+  
+  ::-webkit-scrollbar-corner {
+    background: #2d2d2d;
+  }
+</style>

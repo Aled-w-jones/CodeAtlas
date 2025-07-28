@@ -1,0 +1,55 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CodeBrowser from '../../components/CodeBrowser.svelte';
+import { getDirectoryListing, getFileContent, fileExists } from '../../utils/file-helpers';
+
+const { path } = Astro.params;
+const decodedPath = path ? decodeURIComponent(path) : '';
+
+// Check if the path exists
+if (!fileExists(decodedPath)) {
+  return Astro.redirect('/browser');
+}
+
+let listing;
+let currentFile = null;
+
+try {
+  // Try to get file content first
+  const fileContent = getFileContent(decodedPath);
+  
+  if (fileContent) {
+    // It's a file - get the directory listing for the parent directory
+    const pathParts = decodedPath.split('/');
+    const fileName = pathParts.pop();
+    const parentPath = pathParts.join('/');
+    
+    listing = getDirectoryListing(parentPath);
+    currentFile = fileContent;
+  } else {
+    // It's a directory
+    listing = getDirectoryListing(decodedPath);
+  }
+} catch (error) {
+  console.error('Error processing path:', error);
+  return Astro.redirect('/browser');
+}
+
+const title = currentFile 
+  ? `${currentFile.name} - File Browser`
+  : `${listing.currentPath || 'Root'} - File Browser`;
+---
+
+<Layout title={title}>
+  <div class="h-screen flex flex-col">
+    <div class="flex-1 overflow-hidden">
+      <CodeBrowser 
+        client:load
+        directories={listing.directories}
+        files={listing.files}
+        currentPath={listing.currentPath}
+        currentFile={currentFile}
+      />
+    </div>
+  </div>
+</Layout>
