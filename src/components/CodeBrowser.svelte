@@ -119,7 +119,7 @@
   });
 </script>
 
-<div class="code-browser flex h-full bg-gray-900">
+<div class="code-browser flex h-full bg-gray-900 text-gray-100">
   <!-- Left Panel - Directory/File Browser -->
   <div class="w-80 bg-gray-800 border-r border-gray-600 flex flex-col">
     <!-- Header -->

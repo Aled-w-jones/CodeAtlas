@@ -7,7 +7,12 @@ import tailwind from '@astrojs/tailwind';
 export default defineConfig({
   site: 'https://your-username.github.io',
   base: '/pythonmap-mk2',
-  integrations: [svelte(), tailwind()],
+  integrations: [
+    svelte(), 
+    tailwind({
+      applyBaseStyles: false, // We're using our own global styles
+    })
+  ],
   output: 'static',
   build: {
     assets: 'assets'

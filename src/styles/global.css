@@ -1,0 +1,103 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* VS Code Dark Theme Colors */
+:root {
+  --vsc-bg-dark: #1e1e1e;
+  --vsc-bg-darker: #252526;
+  --vsc-bg-sidebar: #2d2d30;
+  --vsc-text-primary: #cccccc;
+  --vsc-text-secondary: #969696;
+  --vsc-border: #3e3e42;
+  --vsc-accent-blue: #007acc;
+  --vsc-accent-green: #4ec9b0;
+  --vsc-accent-orange: #ce9178;
+  --vsc-accent-yellow: #dcdcaa;
+}
+
+/* Base styles */
+html {
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', Consolas, monospace;
+  background-color: var(--vsc-bg-dark);
+  color: var(--vsc-text-primary);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--vsc-bg-dark);
+  color: var(--vsc-text-primary);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* VS Code-inspired scrollbars */
+::-webkit-scrollbar {
+  width: 14px;
+  height: 14px;
+}
+
+::-webkit-scrollbar-track {
+  background: #2d2d2d;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #424242;
+  border-radius: 7px;
+  border: 3px solid #2d2d2d;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #4f4f4f;
+}
+
+::-webkit-scrollbar-corner {
+  background: #2d2d2d;
+}
+
+/* Custom utility classes */
+.bg-vsc-dark {
+  background-color: var(--vsc-bg-dark);
+}
+
+.bg-vsc-darker {
+  background-color: var(--vsc-bg-darker);
+}
+
+.bg-vsc-sidebar {
+  background-color: var(--vsc-bg-sidebar);
+}
+
+.text-vsc-primary {
+  color: var(--vsc-text-primary);
+}
+
+.text-vsc-secondary {
+  color: var(--vsc-text-secondary);
+}
+
+.border-vsc {
+  border-color: var(--vsc-border);
+}
+
+/* Code highlighting overrides */
+.code-browser {
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', Consolas, monospace;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* Ensure proper height for full-screen layout */
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
+#app, .layout-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
