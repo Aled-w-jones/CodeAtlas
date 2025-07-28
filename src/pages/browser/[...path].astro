@@ -2,6 +2,45 @@
 import Layout from '../../layouts/Layout.astro';
 import CodeBrowser from '../../components/CodeBrowser.svelte';
 import { getDirectoryListing, getFileContent, fileExists } from '../../utils/file-helpers';
+import { readdirSync, statSync } from 'fs';
+import { join } from 'path';
+
+export async function getStaticPaths() {
+  const scriptsDir = join(process.cwd(), 'scripts');
+  const paths = [];
+
+  function getAllPaths(dir: string, basePath: string = '') {
+    try {
+      const items = readdirSync(dir);
+      
+      for (const item of items) {
+        const fullPath = join(dir, item);
+        const relativePath = basePath ? `${basePath}/${item}` : item;
+        
+        try {
+          const stat = statSync(fullPath);
+          
+          if (stat.isDirectory()) {
+            // Add directory path
+            paths.push({ params: { path: relativePath } });
+            // Recursively get subdirectory contents
+            getAllPaths(fullPath, relativePath);
+          } else {
+            // Add file path
+            paths.push({ params: { path: relativePath } });
+          }
+        } catch (error) {
+          console.warn(`Skipping ${fullPath}:`, error.message);
+        }
+      }
+    } catch (error) {
+      console.warn(`Could not read directory ${dir}:`, error.message);
+    }
+  }
+
+  getAllPaths(scriptsDir);
+  return paths;
+}
 
 const { path } = Astro.params;
 const decodedPath = path ? decodeURIComponent(path) : '';
