@@ -7,6 +7,12 @@ export interface Props {
 }
 
 const { title, description = 'PythonMap MK2 - High-performance code browser with Astro and Svelte' } = Astro.props;
+
+// Helper function to get the correct path with base
+function getPath(path: string): string {
+  const base = import.meta.env.BASE_URL || '/';
+  return base === '/' ? path : base.replace(/\/$/, '') + path;
+}
 ---
 
 <!DOCTYPE html>
@@ -23,11 +29,11 @@ const { title, description = 'PythonMap MK2 - High-performance code browser with
       <header class="bg-gray-800 border-b border-gray-700 px-6 py-4 flex-shrink-0">
         <div class="flex items-center justify-between">
           <h1 class="text-2xl font-bold text-blue-400">
-            <a href="/" class="hover:text-blue-300 transition-colors duration-200">PythonMap MK2</a>
+            <a href={getPath("/")} class="hover:text-blue-300 transition-colors duration-200">PythonMap MK2</a>
           </h1>
           <nav class="flex items-center gap-6">
-            <a href="/browser/" class="text-gray-300 hover:text-white transition-colors duration-200 px-3 py-2 rounded hover:bg-gray-700">Browser</a>
-            <a href="/notepads/" class="text-gray-300 hover:text-white transition-colors duration-200 px-3 py-2 rounded hover:bg-gray-700">Notepads</a>
+            <a href={getPath("/browser/")} class="text-gray-300 hover:text-white transition-colors duration-200 px-3 py-2 rounded hover:bg-gray-700">Browser</a>
+            <a href={getPath("/notepads/")} class="text-gray-300 hover:text-white transition-colors duration-200 px-3 py-2 rounded hover:bg-gray-700">Notepads</a>
           </nav>
         </div>
       </header>

@@ -28,6 +28,15 @@ export interface FileContent {
 const SCRIPTS_DIR = join(process.cwd(), 'scripts');
 
 /**
+ * Helper function to get the correct path with base
+ */
+function getPath(path: string): string {
+  // Get the base URL from environment variable
+  const base = process.env.BASE_URL || import.meta.env?.BASE_URL || '/';
+  return base === '/' ? path : base.replace(/\/$/, '') + path;
+}
+
+/**
  * Get directory listing for the file browser
  */
 export function getDirectoryListing(relativePath: string = ''): DirectoryListing {
@@ -48,7 +57,7 @@ export function getDirectoryListing(relativePath: string = ''): DirectoryListing
         directories.push({
           name: item,
           title: item,
-          url: `/browser/${itemRelativePath}`,
+          url: getPath(`/browser/${itemRelativePath}`),
           isDirectory: true,
           size: 0,
           modified: stat.mtime
@@ -57,7 +66,7 @@ export function getDirectoryListing(relativePath: string = ''): DirectoryListing
         files.push({
           name: item,
           title: item,
-          url: `/browser/${itemRelativePath}`,
+          url: getPath(`/browser/${itemRelativePath}`),
           isDirectory: false,
           size: stat.size,
           modified: stat.mtime
@@ -192,7 +201,7 @@ export function getBreadcrumbs(currentPath: string): Array<{ name: string; url: 
     const path = parts.slice(0, i + 1).join('/');
     breadcrumbs.push({
       name: parts[i],
-      url: `/browser/${path}`
+      url: getPath(`/browser/${path}`)
     });
   }
 
