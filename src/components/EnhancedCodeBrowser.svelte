@@ -42,8 +42,8 @@
     pageData?.readmeContent && 
     !(pageData?.name?.toLowerCase().includes('readme') && pageData?.extension === 'md');
   
-  // Check if this is a README.md file specifically (for different rendering)
-  $: isReadmeFile = pageData?.type === 'file' && pageData?.name?.toLowerCase() === 'readme.md';
+  // Check if this is a markdown file (for proper markdown rendering)
+  $: isMarkdownFile = pageData?.type === 'file' && pageData?.extension === 'md';
   
   // Initialize component
   onMount(() => {
@@ -358,8 +358,8 @@
                 <span class="text-vsc-text-secondary text-sm">{getFileIcon({ extension: pageData.extension })} {pageData.path}</span>
               </div>
               <div class="flex-1 overflow-auto">
-                {#if isReadmeFile}
-                  <!-- README file rendered as markdown -->
+                {#if isMarkdownFile}
+                  <!-- Markdown file rendered with proper styling -->
                   {#if showRawMarkdown}
                     <pre class="!bg-vsc-bg-medium !border-0 !rounded-none m-0 h-full"><code 
                       bind:this={codeElement}
@@ -436,8 +436,8 @@
               <span class="text-vsc-text-secondary text-sm">{getFileIcon({ extension: pageData.extension })} {pageData.path}</span>
             </div>
             <div class="flex-1 overflow-auto">
-              {#if isReadmeFile}
-                <!-- README file rendered as markdown -->
+              {#if isMarkdownFile}
+                <!-- Markdown file rendered with proper styling -->
                 {#if showRawMarkdown}
                   <pre class="!bg-vsc-bg-medium !border-0 !rounded-none m-0 h-full"><code 
                     bind:this={codeElement}

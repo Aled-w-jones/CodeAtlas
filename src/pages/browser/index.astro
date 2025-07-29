@@ -1,21 +1,31 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import CodeBrowser from '../../components/CodeBrowser.svelte';
-import { getDirectoryListing } from '../../utils/file-helpers';
+import EnhancedCodeBrowser from '../../components/EnhancedCodeBrowser.svelte';
+import { getDirectoryListing, buildSearchIndex } from '../../utils/file-helpers';
 
 const listing = getDirectoryListing();
+const searchIndex = buildSearchIndex('');
+
+// Create pageData structure for directory view like the [...path].astro does
+const pageData = {
+  type: 'directory',
+  path: 'scripts',
+  items: [...listing.directories, ...listing.files].map(item => ({
+    name: item.name,
+    path: item.url.replace('/pythonmap-mk2/browser/', ''),
+    type: item.isDirectory ? 'directory' : 'file',
+    extension: item.isDirectory ? null : item.name.split('.').pop()?.toLowerCase(),
+    size: item.size
+  })),
+  readmeContent: null,
+  breadcrumbs: []
+};
 ---
 
 <Layout title="File Browser - PythonMap MK2">
-  <div class="h-screen flex flex-col">
-    <div class="flex-1 overflow-hidden">
-      <CodeBrowser 
-        client:load
-        directories={listing.directories}
-        files={listing.files}
-        currentPath={listing.currentPath}
-        currentFile={null}
-      />
-    </div>
-  </div>
+  <EnhancedCodeBrowser 
+    client:load
+    searchIndex={searchIndex}
+    pageData={pageData}
+  />
 </Layout>
