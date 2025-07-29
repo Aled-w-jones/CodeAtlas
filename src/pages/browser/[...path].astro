@@ -1,7 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import CodeBrowser from '../../components/CodeBrowser.svelte';
-import { getDirectoryListing, getFileContent, fileExists } from '../../utils/file-helpers';
+import EnhancedCodeBrowser from '../../components/EnhancedCodeBrowser.svelte';
+import { getDirectoryListing, getFileContent, fileExists, buildSearchIndex } from '../../utils/file-helpers';
 import { readdirSync, statSync } from 'fs';
 import { join } from 'path';
 
@@ -50,45 +50,65 @@ if (!fileExists(decodedPath)) {
   return Astro.redirect('/browser');
 }
 
-let listing;
-let currentFile = null;
+// Process the path to create MK1-style pageData
+let pageData = null;
+let searchIndex = [];
 
 try {
+  // Build search index for the entire project
+  searchIndex = buildSearchIndex('');
+  
   // Try to get file content first
   const fileContent = getFileContent(decodedPath);
   
   if (fileContent) {
-    // It's a file - get the directory listing for the parent directory
+    // It's a file - create file pageData
     const pathParts = decodedPath.split('/');
     const fileName = pathParts.pop();
     const parentPath = pathParts.join('/');
     
-    listing = getDirectoryListing(parentPath);
-    currentFile = fileContent;
+    pageData = {
+      type: 'file',
+      name: fileContent.name,
+      path: decodedPath,
+      content: fileContent.content,
+      extension: fileContent.name.split('.').pop()?.toLowerCase(),
+      readmeContent: fileContent.readmeContent,
+      isMarkdownRendered: fileContent.isMarkdownRendered,
+      breadcrumbs: decodedPath ? decodedPath.split('/') : []
+    };
   } else {
-    // It's a directory
-    listing = getDirectoryListing(decodedPath);
+    // It's a directory - create directory pageData
+    const listing = getDirectoryListing(decodedPath);
+    
+    pageData = {
+      type: 'directory',
+      path: decodedPath || 'scripts',
+      items: [...listing.directories, ...listing.files].map(item => ({
+        name: item.name,
+        path: item.url.replace('/browser/', ''),
+        type: item.isDirectory ? 'directory' : 'file',
+        extension: item.isDirectory ? null : item.name.split('.').pop()?.toLowerCase(),
+        size: item.size
+      })),
+      readmeContent: null, // TODO: Add directory README support
+      breadcrumbs: decodedPath ? decodedPath.split('/') : []
+    };
   }
 } catch (error) {
   console.error('Error processing path:', error);
   return Astro.redirect('/browser');
 }
 
-const title = currentFile 
-  ? `${currentFile.name} - File Browser`
-  : `${listing.currentPath || 'Root'} - File Browser`;
+const title = pageData?.type === 'file' 
+  ? `${pageData.name} - File Browser`
+  : `${pageData.path || 'Root'} - File Browser`;
 ---
 
 <Layout title={title}>
-  <div class="h-screen flex flex-col">
-    <div class="flex-1 overflow-hidden">
-      <CodeBrowser 
-        client:load
-        directories={listing.directories}
-        files={listing.files}
-        currentPath={listing.currentPath}
-        currentFile={currentFile}
-      />
-    </div>
-  </div>
+  <EnhancedCodeBrowser 
+    client:load
+    searchIndex={searchIndex}
+    pageData={pageData}
+  />
 </Layout>

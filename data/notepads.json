@@ -1,0 +1,62 @@
+[
+  {
+    "id": "arcgis_utils",
+    "title": "ArcGIS Utilities - Enterprise Connection Management",
+    "description": "A comprehensive, production-ready utility for managing ArcGIS connections with enterprise-grade logging, performance monitoring, secure credential management, and robust SSL certificate handling.",
+    "filePath": "scripts/arcgis_utils.py",
+    "readmeFile": "scripts/arcgis_utils_README.md",
+    "tags": ["GIS", "enterprise", "security", "automation", "advanced"],
+    "author": "PythonMap",
+    "lastUpdated": "2025-07-28T12:00:00Z",
+    "dependencies": ["arcgis", "requests", "certifi", "keyring"],
+    "annotationsFile": "data/annotations/arcgis_utils.json"
+  },
+  {
+    "id": "data_analysis_utils",
+    "title": "Data Analysis Utilities for Pandas",
+    "description": "Helper functions for data manipulation and cleaning using Pandas. Includes trend analysis, outlier filtering, and data export capabilities with comprehensive documentation.",
+    "filePath": "scripts/project_x/util.py",
+    "readmeFile": "scripts/project_x/README.md",
+    "tags": ["data science", "pandas", "intermediate", "utilities"],
+    "author": "PythonMap",
+    "lastUpdated": "2025-07-28T10:00:00Z",
+    "dependencies": ["pandas", "numpy"],
+    "annotationsFile": null
+  },
+  {
+    "id": "advanced_data_analytics",
+    "title": "Advanced Data Analytics Suite",
+    "description": "A powerful, all-in-one Python toolkit for comprehensive data analysis, visualization, and machine learning. Features automated EDA, intelligent data cleaning, beautiful visualizations, and AutoML capabilities.",
+    "filePath": "scripts/project_y/data_analyzer.py",
+    "readmeFile": "scripts/project_y/README.md", 
+    "tags": ["data science", "machine learning", "visualization", "advanced", "pandas", "scikit-learn"],
+    "author": "PythonMap",
+    "lastUpdated": "2025-07-28T09:00:00Z",
+    "dependencies": ["pandas", "numpy", "matplotlib", "seaborn", "scikit-learn"],
+    "annotationsFile": null
+  },
+  {
+    "id": "hello_world",
+    "title": "Hello World - Python Basics",
+    "description": "A simple introduction to Python programming with basic syntax examples, variable declarations, and function definitions. Perfect for beginners learning Python fundamentals.",
+    "filePath": "scripts/examples/hello_world.py",
+    "readmeFile": null,
+    "tags": ["beginner", "basics", "tutorial"],
+    "author": "PythonMap",
+    "lastUpdated": "2025-07-28T08:00:00Z",
+    "dependencies": [],
+    "annotationsFile": null
+  },
+  {
+    "id": "file_manager",
+    "title": "File Manager Utilities",
+    "description": "Cross-platform file management utilities for Python applications. Handles file operations, directory traversal, and path management with error handling and logging capabilities.",
+    "filePath": "scripts/utilities/file_manager.py",
+    "readmeFile": null,
+    "tags": ["utilities", "file management", "cross-platform", "intermediate"],
+    "author": "PythonMap",
+    "lastUpdated": "2025-07-28T07:00:00Z",
+    "dependencies": ["pathlib", "logging"],
+    "annotationsFile": null
+  }
+]

@@ -1,0 +1,117 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import EnhancedNotepadViewer from '../../components/EnhancedNotepadViewer.svelte';
+import { readFileSync, existsSync } from 'fs';
+import { join } from 'path';
+import { marked } from 'marked';
+
+// Helper function to get the correct path with base
+function getPath(path: string): string {
+  const base = import.meta.env.BASE_URL || '/';
+  return base === '/' ? path : base.replace(/\/$/, '') + path;
+}
+
+// Load notepad data
+function loadNotepads() {
+  try {
+    const notepadsPath = join(process.cwd(), 'data', 'notepads.json');
+    const notepadsData = readFileSync(notepadsPath, 'utf-8');
+    return JSON.parse(notepadsData);
+  } catch (err) {
+    console.error('Error loading notepads:', err);
+    return [];
+  }
+}
+
+// Load file content
+function loadFileContent(filePath: string) {
+  try {
+    const fullPath = join(process.cwd(), filePath);
+    return readFileSync(fullPath, 'utf-8');
+  } catch (err) {
+    console.error('Error loading file:', filePath, err);
+    return null;
+  }
+}
+
+// Load annotations if they exist
+function loadAnnotations(notepadId: string) {
+  try {
+    const annotationsPath = join(process.cwd(), 'data', 'annotations', `${notepadId}.json`);
+    if (existsSync(annotationsPath)) {
+      const annotationsData = readFileSync(annotationsPath, 'utf-8');
+      return JSON.parse(annotationsData);
+    }
+  } catch (err) {
+    console.error('Error loading annotations:', err);
+  }
+  return null;
+}
+
+export async function getStaticPaths() {
+  // Load notepad data for static path generation
+  let notepads = [];
+  try {
+    const notepadsPath = join(process.cwd(), 'data', 'notepads.json');
+    const notepadsData = readFileSync(notepadsPath, 'utf-8');
+    notepads = JSON.parse(notepadsData);
+  } catch (err) {
+    console.error('Error loading notepads:', err);
+  }
+  
+  return notepads.map((notepad) => ({
+    params: { slug: notepad.id },
+  }));
+}
+
+const { slug } = Astro.params;
+const notepads = loadNotepads();
+const notepad = notepads.find((n: any) => n.id === slug);
+
+if (!notepad) {
+  return Astro.redirect('/404');
+}
+
+// Load the script content
+const content = loadFileContent(notepad.filePath);
+if (!content) {
+  return Astro.redirect('/404');
+}
+
+// Load README content if it exists
+let readmeContent = null;
+let rawReadmeContent = null;
+if (notepad.readmeFile) {
+  rawReadmeContent = loadFileContent(notepad.readmeFile);
+  if (rawReadmeContent) {
+    try {
+      // Process markdown like MK1 - server-side rendering
+      readmeContent = marked(rawReadmeContent);
+    } catch (error) {
+      console.warn('Markdown processing failed:', error);
+      readmeContent = `<pre>${rawReadmeContent}</pre>`;
+    }
+  }
+}
+
+// Load annotations if they exist
+const annotations = loadAnnotations(notepad.id);
+
+const title = `${notepad.title} - PythonMap MK2`;
+
+// Create data structure matching MK1's format
+const notepadData = {
+  notepad,
+  content,
+  readmeContent,
+  rawReadmeContent,
+  annotations
+};
+---
+
+<Layout title={title}>
+  <EnhancedNotepadViewer 
+    client:load
+    notepadData={notepadData}
+  />
+</Layout>

@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import ThemeToggle from '../components/ThemeToggle.svelte';
 
 export interface Props {
   title: string;
@@ -24,17 +25,21 @@ function getPath(path: string): string {
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
   </head>
-  <body class="bg-gray-900 text-gray-100 font-mono h-full">
-    <div class="layout-container">
-      <header class="bg-gray-800 border-b border-gray-700 px-6 py-4 flex-shrink-0">
+  <body class="bg-vsc-light-bg-dark dark:bg-vsc-bg-dark text-vsc-light-text-primary dark:text-vsc-text-primary font-mono h-full">
+    <div class="layout-container h-full flex flex-col">
+      <header class="bg-vsc-light-bg-medium dark:bg-vsc-bg-medium border-b border-vsc-light-border dark:border-vsc-border-light px-6 py-4 flex-shrink-0">
         <div class="flex items-center justify-between">
-          <h1 class="text-2xl font-bold text-blue-400">
-            <a href={getPath("/")} class="hover:text-blue-300 transition-colors duration-200">PythonMap MK2</a>
+          <h1 class="text-2xl font-bold text-vsc-light-accent-blue dark:text-vsc-accent-blue">
+            <a href={getPath("/")} class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200">PythonMap MK2</a>
           </h1>
-          <nav class="flex items-center gap-6">
-            <a href={getPath("/browser/")} class="text-gray-300 hover:text-white transition-colors duration-200 px-3 py-2 rounded hover:bg-gray-700">Browser</a>
-            <a href={getPath("/notepads/")} class="text-gray-300 hover:text-white transition-colors duration-200 px-3 py-2 rounded hover:bg-gray-700">Notepads</a>
-          </nav>
+          <div class="flex items-center gap-6">
+            <nav class="flex items-center gap-6">
+              <a href={getPath("/browser/")} class="text-vsc-light-text-secondary dark:text-vsc-text-secondary hover:text-vsc-light-text-primary dark:hover:text-vsc-text-primary transition-colors duration-200 px-3 py-2 rounded hover:bg-vsc-light-bg-light dark:hover:bg-vsc-bg-light">Browser</a>
+              <a href={getPath("/notepads/")} class="text-vsc-light-text-secondary dark:text-vsc-text-secondary hover:text-vsc-light-text-primary dark:hover:text-vsc-text-primary transition-colors duration-200 px-3 py-2 rounded hover:bg-vsc-light-bg-light dark:hover:bg-vsc-bg-light">Notepads</a>
+            </nav>
+            <!-- Theme Toggle -->
+            <ThemeToggle client:load />
+          </div>
         </div>
       </header>
       
@@ -42,9 +47,21 @@ function getPath(path: string): string {
         <slot />
       </main>
       
-      <footer class="bg-gray-800 border-t border-gray-700 px-6 py-3 text-center text-gray-400 text-sm flex-shrink-0">
-        Built with <span class="text-purple-400 font-semibold">Astro</span> + <span class="text-orange-400 font-semibold">Svelte</span> for maximum performance
+      <footer class="bg-vsc-light-bg-medium dark:bg-vsc-bg-medium border-t border-vsc-light-border dark:border-vsc-border-light px-6 py-3 text-center text-vsc-light-text-secondary dark:text-vsc-text-secondary text-sm flex-shrink-0">
+        Built with <span class="text-purple-500 dark:text-purple-400 font-semibold">Astro</span> + <span class="text-orange-500 dark:text-orange-400 font-semibold">Svelte</span> for maximum performance
       </footer>
     </div>
+
+    <!-- Theme initialization script -->
+    <script>
+      // Initialize theme from localStorage or system preference
+      (function() {
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const shouldBeDark = savedTheme ? savedTheme === 'dark' : prefersDark;
+        
+        document.documentElement.classList.toggle('dark', shouldBeDark);
+      })();
+    </script>
   </body>
 </html>
