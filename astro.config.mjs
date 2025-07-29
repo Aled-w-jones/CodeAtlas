@@ -5,8 +5,8 @@ import tailwind from '@astrojs/tailwind';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://your-username.github.io',
-  base: '/pythonmap-mk2',
+  site: 'https://aled-w-jones.github.io',
+  base: '/CodeAtlas',
   integrations: [
     svelte(), 
     tailwind({
