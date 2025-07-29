@@ -72,8 +72,10 @@ try {
       name: fileContent.name,
       path: decodedPath,
       content: fileContent.content,
+      rawContent: fileContent.rawContent,
       extension: fileContent.name.split('.').pop()?.toLowerCase(),
       readmeContent: fileContent.readmeContent,
+      rawReadmeContent: fileContent.rawReadmeContent,
       isMarkdownRendered: fileContent.isMarkdownRendered,
       breadcrumbs: decodedPath ? decodedPath.split('/') : []
     };
@@ -86,7 +88,7 @@ try {
       path: decodedPath || 'scripts',
       items: [...listing.directories, ...listing.files].map(item => ({
         name: item.name,
-        path: item.url.replace('/browser/', ''),
+        path: item.url.replace('/pythonmap-mk2/browser/', ''),
         type: item.isDirectory ? 'directory' : 'file',
         extension: item.isDirectory ? null : item.name.split('.').pop()?.toLowerCase(),
         size: item.size
