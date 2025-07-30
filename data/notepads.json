@@ -6,7 +6,7 @@
     "filePath": "scripts/arcgis_utils.py",
     "readmeFile": "scripts/arcgis_utils_README.md",
     "tags": ["GIS", "enterprise", "security", "automation", "advanced"],
-    "author": "PythonMap",
+    "author": "CodeAtlas",
     "lastUpdated": "2025-07-28T12:00:00Z",
     "dependencies": ["arcgis", "requests", "certifi", "keyring"],
     "annotationsFile": "data/annotations/arcgis_utils.json"
@@ -18,7 +18,7 @@
     "filePath": "scripts/project_x/util.py",
     "readmeFile": "scripts/project_x/README.md",
     "tags": ["data science", "pandas", "intermediate", "utilities"],
-    "author": "PythonMap",
+    "author": "CodeAtlas",
     "lastUpdated": "2025-07-28T10:00:00Z",
     "dependencies": ["pandas", "numpy"],
     "annotationsFile": null
@@ -30,7 +30,7 @@
     "filePath": "scripts/project_y/data_analyzer.py",
     "readmeFile": "scripts/project_y/README.md", 
     "tags": ["data science", "machine learning", "visualization", "advanced", "pandas", "scikit-learn"],
-    "author": "PythonMap",
+    "author": "CodeAtlas",
     "lastUpdated": "2025-07-28T09:00:00Z",
     "dependencies": ["pandas", "numpy", "matplotlib", "seaborn", "scikit-learn"],
     "annotationsFile": null
@@ -42,7 +42,7 @@
     "filePath": "scripts/examples/hello_world.py",
     "readmeFile": null,
     "tags": ["beginner", "basics", "tutorial"],
-    "author": "PythonMap",
+    "author": "CodeAtlas",
     "lastUpdated": "2025-07-28T08:00:00Z",
     "dependencies": [],
     "annotationsFile": null
@@ -54,9 +54,33 @@
     "filePath": "scripts/utilities/file_manager.py",
     "readmeFile": null,
     "tags": ["utilities", "file management", "cross-platform", "intermediate"],
-    "author": "PythonMap",
+    "author": "CodeAtlas",
     "lastUpdated": "2025-07-28T07:00:00Z",
     "dependencies": ["pathlib", "logging"],
     "annotationsFile": null
+  },
+  {
+    "id": "csv_publisher",
+    "title": "CSV to Feature Layer Publisher",
+    "description": "Simple utility for publishing CSV files as hosted feature layers in ArcGIS Online or Enterprise. Streamlined version of enterprise publishing workflows with monitoring and error handling.",
+    "filePath": "scripts/publishing/csv_publisher.py",
+    "readmeFile": "scripts/publishing/README_csv_publisher.md",
+    "tags": ["GIS", "publishing", "CSV", "feature layers", "intermediate", "ArcGIS"],
+    "author": "CodeAtlas",
+    "lastUpdated": "2025-07-30T12:00:00Z",
+    "dependencies": ["arcgis"],
+    "annotationsFile": "data/annotations/csv_publisher.json"
+  },
+  {
+    "id": "spatial_analysis",
+    "title": "Spatial Analysis - Hotspot Detection",
+    "description": "Perform hotspot analysis on point feature layers using ArcGIS spatial analysis tools. Demonstrates how to submit and monitor spatial analysis jobs programmatically.",
+    "filePath": "scripts/publishing/spatial_analysis.py",
+    "readmeFile": "scripts/publishing/README_spatial_analysis.md",
+    "tags": ["GIS", "spatial analysis", "hotspots", "statistics", "advanced", "ArcGIS"],
+    "author": "CodeAtlas",
+    "lastUpdated": "2025-07-30T12:00:00Z",
+    "dependencies": ["arcgis", "requests"],
+    "annotationsFile": "data/annotations/spatial_analysis.json"
   }
 ]

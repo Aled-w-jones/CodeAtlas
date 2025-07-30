@@ -7,7 +7,7 @@ export interface Props {
   description?: string;
 }
 
-const { title, description = 'PythonMap MK2 - High-performance code browser with Astro and Svelte' } = Astro.props;
+const { title, description = 'CodeAtlas - High-performance code browser with Astro and Svelte' } = Astro.props;
 
 // Helper function to get the correct path with base
 function getPath(path: string): string {
@@ -30,7 +30,7 @@ function getPath(path: string): string {
       <header class="bg-vsc-light-bg-medium dark:bg-vsc-bg-medium border-b border-vsc-light-border dark:border-vsc-border-light px-6 py-4 flex-shrink-0">
         <div class="flex items-center justify-between">
           <h1 class="text-2xl font-bold text-vsc-light-accent-blue dark:text-vsc-accent-blue">
-            <a href={getPath("/")} class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200">PythonMap MK2</a>
+            <a href={getPath("/")} class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200">CodeAtlas</a>
           </h1>
           <div class="flex items-center gap-6">
             <nav class="flex items-center gap-6">

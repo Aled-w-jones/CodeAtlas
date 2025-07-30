@@ -1,0 +1,52 @@
+{
+  "annotations": [
+    {
+      "line": 8,
+      "type": "info",
+      "title": "Function Overview",
+      "content": "This function handles the complete workflow of publishing a CSV file as a hosted feature layer. It manages the asynchronous publishing process and monitors job status."
+    },
+    {
+      "line": 15,
+      "type": "warning",
+      "title": "CSV Requirements",
+      "content": "The CSV file must contain latitude/longitude columns or address fields for geocoding. Ensure your CSV has proper coordinate data before publishing."
+    },
+    {
+      "line": 22,
+      "type": "code",
+      "title": "Asynchronous Publishing",
+      "content": "Using future=True enables asynchronous publishing, allowing the script to monitor progress. The future.result() call blocks until completion."
+    },
+    {
+      "line": 25,
+      "type": "info",
+      "title": "Monitoring Loop",
+      "content": "The monitoring loop checks every 5 seconds for up to 5 minutes. This prevents the script from hanging on failed publishing jobs."
+    },
+    {
+      "line": 32,
+      "type": "success",
+      "title": "Success Handling",
+      "content": "When publishing completes successfully, the function returns the new feature layer item with its unique ID and metadata."
+    },
+    {
+      "line": 45,
+      "type": "tip",
+      "title": "Connection Setup",
+      "content": "Replace the connection parameters with your actual ArcGIS Online or Enterprise portal URL and credentials. Consider using environment variables for security."
+    },
+    {
+      "line": 48,
+      "type": "warning",
+      "title": "Item ID Required",
+      "content": "You need to replace 'your_csv_item_id' with an actual CSV item ID from your ArcGIS content. Use gis.content.search() to find CSV items."
+    },
+    {
+      "line": 51,
+      "type": "info", 
+      "title": "Publishing Workflow",
+      "content": "The main workflow: 1) Connect to GIS, 2) Get CSV item, 3) Publish as feature layer, 4) Handle results. This pattern works for any CSV publishing scenario."
+    }
+  ]
+}

@@ -1,10 +1,10 @@
-# PythonMap MK2 🚀
+# CodeAtlas 🚀
 
 A high-performance code browser built with **Astro** + **Svelte** for lightning-fast performance on GitHub Pages.
 
-## ✨ What's New in MK2
+## ✨ What's New in CodeAtlas
 
-This is a complete rewrite of the original PythonMap, addressing all the performance issues and janky behavior:
+This is a complete rewrite of the original PythonMap project, addressing all the performance issues and janky behavior:
 
 ### 🎯 Key Improvements
 - **⚡ Performance**: Optimized Astro + Svelte architecture for sub-second loading
@@ -32,7 +32,7 @@ This is a complete rewrite of the original PythonMap, addressing all the perform
 ```bash
 # Clone and install
 git clone <your-repo>
-cd pythonmap-mk2
+cd CodeAtlas
 npm install
 
 # Start development server  
@@ -92,7 +92,7 @@ npm run preview
 
 1. Push to `main` branch
 2. GitHub Actions automatically builds and deploys
-3. Site available at `https://username.github.io/pythonmap-mk2`
+3. Site available at `https://username.github.io/CodeAtlas`
 
 ### Manual Deployment
 
@@ -110,7 +110,7 @@ The project is pre-configured for GitHub Pages in `astro.config.mjs`:
 ```javascript
 export default defineConfig({
   site: 'https://your-username.github.io',
-  base: '/pythonmap-mk2',
+  base: '/CodeAtlas',
   integrations: [svelte(), tailwind()],
   output: 'static'
 });

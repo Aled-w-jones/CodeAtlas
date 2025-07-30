@@ -1,0 +1,76 @@
+{
+  "annotations": [
+    {
+      "line": 11,
+      "type": "info",
+      "title": "Hotspot Analysis Function",
+      "content": "This function performs Find Hot Spots analysis using ArcGIS spatial analysis tools. It identifies statistically significant clusters of high values (hot spots) and low values (cold spots) in point data."
+    },
+    {
+      "line": 22,
+      "type": "warning",
+      "title": "Hosting Server Required",
+      "content": "Spatial analysis requires a hosting server with spatial analysis capabilities. This is typically available in ArcGIS Enterprise or ArcGIS Online with sufficient credits."
+    },
+    {
+      "line": 29,
+      "type": "code",
+      "title": "Token Authentication",
+      "content": "The analysis uses the GIS connection token for authentication. This token is automatically managed by the ArcGIS Python API when you connect to your portal."
+    },
+    {
+      "line": 36,
+      "type": "info",
+      "title": "Service URL Format",
+      "content": "Feature layer URLs must end with '/0' to reference the first layer in the service. This ensures the analysis targets the correct layer."
+    },
+    {
+      "line": 39,
+      "type": "tip",
+      "title": "Output Properties",
+      "content": "The output properties define metadata for the resulting analysis layer, including name, description, and where it's stored in your content."
+    },
+    {
+      "line": 50,
+      "type": "code",
+      "title": "Analysis Parameters",
+      "content": "The submit URL includes key parameters: shapeType (hexagon), outputName (result metadata), analysisLayer (input data), and authentication token."
+    },
+    {
+      "line": 64,
+      "type": "info",
+      "title": "Job Monitoring",
+      "content": "Spatial analysis runs as an asynchronous job. The script polls the job status every 5 seconds until completion, failure, or timeout (5 minutes)."
+    },
+    {
+      "line": 71,
+      "type": "warning",
+      "title": "Job Status Handling",
+      "content": "Check for 'esriJobFailed' status to catch analysis failures early. Failed jobs often include error messages in the response."
+    },
+    {
+      "line": 76,
+      "type": "success",
+      "title": "Success Processing",
+      "content": "When analysis succeeds, the script searches for the newly created result item. There's a brief delay to allow the item to be fully created in the system."
+    },
+    {
+      "line": 97,
+      "type": "tip",
+      "title": "Connection Setup",
+      "content": "Replace with your actual portal URL and credentials. Consider using environment variables or secure credential storage for production use."
+    },
+    {
+      "line": 100,
+      "type": "warning",
+      "title": "Feature Layer Required",
+      "content": "You need a point feature layer with numeric attributes for hotspot analysis. Replace 'your_feature_layer_id' with an actual feature layer ID."
+    },
+    {
+      "line": 103,
+      "type": "info",
+      "title": "Analysis Workflow",
+      "content": "Complete workflow: 1) Connect to GIS, 2) Get feature layer, 3) Submit analysis job, 4) Monitor progress, 5) Retrieve results. This pattern works for other spatial analysis tools too."
+    }
+  ]
+}

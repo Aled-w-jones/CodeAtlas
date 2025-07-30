@@ -69,7 +69,7 @@ These scripts are designed to help you learn:
 
 ## 🔍 Code Browser Integration
 
-These scripts are optimized for viewing in the PythonMap MK2 code browser:
+These scripts are optimized for viewing in the CodeAtlas code browser:
 
 - **Syntax Highlighting** - Full Python syntax highlighting
 - **Line Numbers** - Perfect alignment with code content
@@ -86,4 +86,4 @@ These scripts are optimized for viewing in the PythonMap MK2 code browser:
 
 ---
 
-*Built with ❤️ for PythonMap MK2 - High-performance code browser*
+*Built with ❤️ for CodeAtlas - High-performance code browser*

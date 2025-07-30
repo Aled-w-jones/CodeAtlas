@@ -153,7 +153,7 @@ def demo_file_operations():
     
     # Create some demo data
     demo_data = {
-        "project": "PythonMap MK2",
+        "project": "CodeAtlas",
         "version": "2.0.0",
         "features": ["Performance", "Line Alignment", "Reliability"],
         "technologies": ["Astro", "Svelte", "Tailwind"]
@@ -181,6 +181,6 @@ def demo_file_operations():
 
 
 if __name__ == "__main__":
-    print("🚀 FileManager Demo - PythonMap MK2")
+    print("🚀 FileManager Demo - CodeAtlas")
     print("=" * 40)
     demo_file_operations()

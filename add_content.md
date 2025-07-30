@@ -1,6 +1,6 @@
-# Adding Content to PythonMap MK2
+# Adding Content to CodeAtlas
 
-This guide shows how to add scripts, directories, and notepads with annotations to your PythonMap MK2 installation.
+This guide shows how to add scripts, directories, and notepads with annotations to your CodeAtlas installation.
 
 ## Adding Scripts & Directories
 
