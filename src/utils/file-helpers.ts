@@ -48,8 +48,8 @@ const SCRIPTS_DIR = join(process.cwd(), 'scripts');
  * Helper function to get the correct path with base
  */
 function getPath(path: string): string {
-  // Get the base URL from environment variable - handle pythonmap-mk2 basepath
-  const base = process.env.BASE_URL || import.meta.env?.BASE_URL || '/pythonmap-mk2/';
+  // Get the base URL from environment variable - handle CodeAtlas basepath
+  const base = process.env.BASE_URL || import.meta.env?.BASE_URL || '/CodeAtlas/';
   if (base === '/') return path;
   const normalizedBase = base.replace(/\/$/, '');
   return normalizedBase + path;

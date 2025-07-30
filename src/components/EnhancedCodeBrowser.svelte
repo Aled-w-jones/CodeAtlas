@@ -193,14 +193,14 @@
     <div class="bg-vsc-bg-light px-6 py-3 border-b border-vsc-border-light flex-shrink-0">
       <nav class="breadcrumb">
         <div class="flex items-center space-x-1 lg:space-x-2 text-xs lg:text-sm text-vsc-text-secondary overflow-x-auto whitespace-nowrap">
-          <a href="/pythonmap-mk2/browser" class="hover:text-vsc-accent-blue flex-shrink-0">Home</a>
+          <a href="/CodeAtlas/browser" class="hover:text-vsc-accent-blue flex-shrink-0">Home</a>
           <span class="flex-shrink-0">/</span>
-          <a href="/pythonmap-mk2/browser/" class="hover:text-vsc-accent-blue flex-shrink-0">Scripts</a>
+          <a href="/CodeAtlas/browser/" class="hover:text-vsc-accent-blue flex-shrink-0">Scripts</a>
           {#if pageData?.breadcrumbs && pageData.breadcrumbs.length > 0}
             {#each pageData.breadcrumbs as crumb, index}
               <span class="flex-shrink-0">/</span>
               <a 
-                href="/pythonmap-mk2/browser/{pageData.breadcrumbs.slice(0, index + 1).join('/')}"
+                href="/CodeAtlas/browser/{pageData.breadcrumbs.slice(0, index + 1).join('/')}"
                 class="hover:text-vsc-accent-blue flex-shrink-0"
               >
                 {crumb}
@@ -242,7 +242,7 @@
                       </span>
                       <div class="transform transition-transform duration-300 hover:translate-x-1">
                         <a 
-                          href="/pythonmap-mk2/browser/{item.path}"
+                          href="/CodeAtlas/browser/{item.path}"
                           class="text-vsc-text-primary hover:text-vsc-accent-blue font-medium transition-colors duration-200"
                         >
                           {item.name}

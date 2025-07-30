@@ -12,7 +12,7 @@ const pageData = {
   path: 'scripts',
   items: [...listing.directories, ...listing.files].map(item => ({
     name: item.name,
-    path: item.url.replace('/pythonmap-mk2/browser/', ''),
+    path: item.url.replace('/CodeAtlas/browser/', ''),
     type: item.isDirectory ? 'directory' : 'file',
     extension: item.isDirectory ? null : item.name.split('.').pop()?.toLowerCase(),
     size: item.size
