@@ -148,7 +148,15 @@ export function getFileContent(relativePath: string): FileContent | null {
     let readmeContent = '';
     let rawReadmeContent = '';
     const fileDir = dirname(fullPath);
-    const readmeFiles = ['README.md', 'readme.md', 'Readme.md'];
+    const baseName = basename(fullPath, extname(fullPath)); // Get filename without extension
+    
+    // Look for various README file patterns
+    const readmeFiles = [
+      'README.md', 'readme.md', 'Readme.md', // Standard README files
+      `${baseName}_README.md`, // filename_README.md
+      `README_${baseName}.md`, // README_filename.md
+      `${baseName}.README.md`, // filename.README.md
+    ];
     
     for (const readmeFile of readmeFiles) {
       try {

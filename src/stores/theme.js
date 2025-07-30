@@ -1,7 +1,7 @@
 import { writable } from 'svelte/store';
 
 // Create a writable store for theme state
-export const isDarkMode = writable(true); // Default to dark mode
+export const isDarkMode = writable(false); // Default to light mode
 
 // Function to toggle theme
 export function toggleTheme() {

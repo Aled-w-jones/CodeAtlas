@@ -175,7 +175,7 @@
 </script>
 
 <!-- VS Code-style Browser Interface -->
-<div class="browser-container h-screen bg-vsc-bg-dark text-vsc-text-primary flex" bind:this={splitContainer}>
+<div class="browser-container h-screen bg-vsc-bg-primary text-vsc-text-primary flex" bind:this={splitContainer}>
   
   <!-- Search Panel (Left Side) -->
   <div class="search-panel flex-shrink-0 transition-all duration-300">
@@ -190,7 +190,7 @@
   <div class="flex-1 flex flex-col overflow-hidden">
     
     <!-- Header with breadcrumbs -->
-    <div class="bg-vsc-bg-light px-6 py-3 border-b border-vsc-border-light flex-shrink-0">
+    <div class="bg-vsc-bg-secondary px-6 py-3 border-b border-vsc-border-muted flex-shrink-0">
       <nav class="breadcrumb">
         <div class="flex items-center space-x-1 lg:space-x-2 text-xs lg:text-sm text-vsc-text-secondary overflow-x-auto whitespace-nowrap">
           <a href="/CodeAtlas/browser" class="hover:text-vsc-accent-blue flex-shrink-0">Home</a>
@@ -213,7 +213,7 @@
 
     {#if pageData?.type === 'directory'}
       <!-- Directory View -->
-      <header class="px-6 py-4 border-b border-vsc-border-light">
+      <header class="px-6 py-4 border-b" style="border-color: var(--vsc-border-muted);">
         <h1 class="text-2xl lg:text-3xl font-bold text-vsc-text-primary">
           📁 {pageData.path === 'scripts' || pageData.path === '.' ? 'Scripts Directory' : pageData.path}
         </h1>
@@ -221,19 +221,19 @@
 
       <!-- Directory Listing -->
       <div class="flex-1 p-6 overflow-auto">
-        <div class="bg-vsc-bg-medium border border-vsc-border-light rounded-lg">
-          <div class="bg-vsc-bg-light px-4 py-2 border-b border-vsc-border-light">
-            <span class="text-vsc-text-secondary text-sm">Files and Directories</span>
+        <div class="border rounded-lg" style="background-color: var(--vsc-bg-secondary); border-color: var(--vsc-border-primary);">
+          <div class="px-4 py-2 border-b" style="background-color: var(--vsc-bg-elevated); border-color: var(--vsc-border-muted);">
+            <span class="text-sm" style="color: var(--vsc-text-secondary);">Files and Directories</span>
           </div>
           
           {#if pageData.items && pageData.items.length === 0}
-            <div class="p-8 text-center text-vsc-text-secondary">
+            <div class="p-8 text-center" style="color: var(--vsc-text-secondary);">
               This directory is empty.
             </div>
           {:else if pageData.items}
-            <div class="divide-y divide-vsc-border-light">
+            <div class="divide-y" style="border-color: var(--vsc-border-muted);">
               {#each pageData.items as item, index}
-                <div class="folder-item px-4 py-3 hover:bg-vsc-bg-light transition-all duration-300 cursor-pointer transform hover:scale-[1.02] hover:translate-x-2" 
+                <div class="folder-item px-4 py-3 hover:bg-vsc-bg-hover transition-all duration-300 cursor-pointer transform hover:scale-[1.02] hover:translate-x-2" 
                   style="animation-delay: {index * 100}ms">
                   <div class="flex items-center justify-between">
                     <div class="flex items-center space-x-3">
@@ -248,7 +248,7 @@
                           {item.name}
                         </a>
                         {#if item.type === 'file' && item.extension}
-                          <span class="text-vsc-text-secondary text-sm ml-2 opacity-70 hover:opacity-100 transition-opacity">
+                          <span class="text-sm ml-2 opacity-70 hover:opacity-100 transition-opacity" style="color: var(--vsc-text-secondary);">
                             .{item.extension}
                           </span>
                         {/if}
@@ -256,14 +256,14 @@
                     </div>
                     
                     {#if item.size}
-                      <span class="text-vsc-text-secondary text-sm opacity-60 group-hover:opacity-100 transition-opacity">
+                      <span class="text-sm opacity-60 group-hover:opacity-100 transition-opacity" style="color: var(--vsc-text-secondary);">
                         {formatFileSize(item.size)}
                       </span>
                     {/if}
                   </div>
                   
                   <!-- Hover underline effect -->
-                  <div class="h-0.5 bg-gradient-to-r from-vsc-accent-blue to-transparent scale-x-0 hover:scale-x-100 transition-transform duration-300 origin-left mt-1"></div>
+                  <div class="h-0.5 scale-x-0 hover:scale-x-100 transition-transform duration-300 origin-left mt-1" style="background: linear-gradient(to right, var(--vsc-accent-blue), transparent);"></div>
                 </div>
               {/each}
             </div>
@@ -469,7 +469,7 @@
 
 <!-- Mobile Modal -->
 {#if showMobileModal && isMobile}
-  <div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+  <div class="fixed inset-0 flex items-center justify-center z-50 p-4" style="background-color: rgba(0, 0, 0, 0.5);">
     <div class="bg-vsc-bg-medium border border-vsc-border-light rounded-lg w-full max-w-4xl h-[90vh] flex flex-col">
       <!-- Modal Header -->
       <div class="bg-vsc-bg-light px-4 py-3 border-b border-vsc-border-light flex items-center justify-between flex-shrink-0">

@@ -1,226 +1,367 @@
-@import 'highlight.js/styles/vs2015.css';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* VS Code Dark Theme Colors */
+/* ========================================
+   MODERN VS CODE 2024 THEME SYSTEM
+======================================== */
+
+/* Default Dark Theme Variables */
 :root {
-  --vsc-bg-dark: #1e1e1e;
-  --vsc-bg-darker: #252526;
-  --vsc-bg-sidebar: #2d2d30;
-  --vsc-text-primary: #cccccc;
-  --vsc-text-secondary: #969696;
-  --vsc-border: #3e3e42;
-  --vsc-accent-blue: #007acc;
-  --vsc-accent-green: #4ec9b0;
-  --vsc-accent-orange: #ce9178;
-  --vsc-accent-yellow: #dcdcaa;
+  /* === BACKGROUND COLORS === */
+  --vsc-bg-primary: #1e1e1e;           /* Main editor background */
+  --vsc-bg-secondary: #252526;         /* Sidebar, panels */
+  --vsc-bg-tertiary: #2d2d30;         /* Activity bar */
+  --vsc-bg-elevated: #333333;         /* Dropdown, tooltips */
+  --vsc-bg-hover: #2a2d2e;            /* Hover states */
+  --vsc-bg-active: #37373d;           /* Active/selected states */
+  --vsc-bg-input: #3c3c3c;            /* Input fields */
+  
+  /* === TEXT COLORS === */
+  --vsc-text-primary: #cccccc;         /* Primary text */
+  --vsc-text-secondary: #a6a6a6;       /* Secondary text */
+  --vsc-text-muted: #808080;           /* Muted text */
+  --vsc-text-disabled: #656565;        /* Disabled text */
+  --vsc-text-inverse: #1e1e1e;         /* Text on light backgrounds */
+  
+  /* === BORDER COLORS === */
+  --vsc-border-primary: #444444;       /* Primary borders */
+  --vsc-border-secondary: #3e3e42;     /* Secondary borders */
+  --vsc-border-muted: #2d2d30;         /* Subtle borders */
+  --vsc-border-focus: #007acc;         /* Focus borders */
+  
+  /* === ACCENT COLORS === */
+  --vsc-accent-blue: #007acc;          /* Primary blue */
+  --vsc-accent-blue-hover: #1177bb;    /* Blue hover */
+  --vsc-accent-success: #89d185;       /* Success green */
+  --vsc-accent-warning: #ffcc02;       /* Warning yellow */
+  --vsc-accent-error: #f85149;         /* Error red */
+  --vsc-accent-info: #75beff;          /* Info cyan */
+  
+  /* === SYNTAX HIGHLIGHTING === */
+  --vsc-syntax-keyword: #569cd6;       /* Keywords */
+  --vsc-syntax-string: #ce9178;        /* Strings */
+  --vsc-syntax-comment: #6a9955;       /* Comments */
+  --vsc-syntax-number: #b5cea8;        /* Numbers */
+  --vsc-syntax-function: #dcdcaa;      /* Functions */
+  --vsc-syntax-type: #4ec9b0;          /* Types */
+  --vsc-syntax-variable: #9cdcfe;      /* Variables */
+  
+  /* === SPECIAL EFFECTS === */
+  --vsc-selection-bg: #264f78;         /* Text selection */
+  --vsc-find-match: #515c6a;           /* Search matches */
+  --vsc-shadow: rgba(0, 0, 0, 0.36);   /* Shadows */
+  
+  /* === THEME TRANSITION === */
+  --transition-duration: 0.2s;         /* Smooth transitions */
 }
 
-/* Base styles */
-html {
-  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', Consolas, monospace;
-  background-color: var(--vsc-bg-dark);
-  color: var(--vsc-text-primary);
+/* Light Theme Override */
+:root:not(.dark),
+html:not(.dark) {
+  /* === BACKGROUND COLORS === */
+  --vsc-bg-primary: #ffffff;           /* Main editor background */
+  --vsc-bg-secondary: #f3f3f3;         /* Sidebar, panels */
+  --vsc-bg-tertiary: #e8e8e8;         /* Activity bar */
+  --vsc-bg-elevated: #ffffff;         /* Dropdown, tooltips */
+  --vsc-bg-hover: #f0f0f0;            /* Hover states */
+  --vsc-bg-active: #e4e6f1;           /* Active/selected states */
+  --vsc-bg-input: #ffffff;            /* Input fields */
+  
+  /* === TEXT COLORS === */
+  --vsc-text-primary: #1e1e1e;         /* Primary text */
+  --vsc-text-secondary: #424242;       /* Secondary text */
+  --vsc-text-muted: #6c6c6c;           /* Muted text */
+  --vsc-text-disabled: #a6a6a6;        /* Disabled text */
+  --vsc-text-inverse: #ffffff;         /* Text on dark backgrounds */
+  
+  /* === BORDER COLORS === */
+  --vsc-border-primary: #c8c8c8;       /* Primary borders */
+  --vsc-border-secondary: #d1d1d1;     /* Secondary borders */
+  --vsc-border-muted: #e8e8e8;         /* Subtle borders */
+  --vsc-border-focus: #0078d4;         /* Focus borders */
+  
+  /* === ACCENT COLORS === */
+  --vsc-accent-blue: #0078d4;          /* Primary blue */
+  --vsc-accent-blue-hover: #106ebe;    /* Blue hover */
+  --vsc-accent-success: #107c10;       /* Success green */
+  --vsc-accent-warning: #ffb900;       /* Warning yellow */
+  --vsc-accent-error: #d13438;         /* Error red */
+  --vsc-accent-info: #0078d4;          /* Info blue */
+  
+  /* === SYNTAX HIGHLIGHTING === */
+  --vsc-syntax-keyword: #0000ff;       /* Keywords */
+  --vsc-syntax-string: #a31515;        /* Strings */
+  --vsc-syntax-comment: #008000;       /* Comments */
+  --vsc-syntax-number: #098658;        /* Numbers */
+  --vsc-syntax-function: #795e26;      /* Functions */
+  --vsc-syntax-type: #267f99;          /* Types */
+  --vsc-syntax-variable: #001080;      /* Variables */
+  
+  /* === SPECIAL EFFECTS === */
+  --vsc-selection-bg: #add6ff;         /* Text selection */
+  --vsc-find-match: #f6b94d;           /* Search matches */
+  --vsc-shadow: rgba(0, 0, 0, 0.132);  /* Shadows */
 }
 
-body {
-  margin: 0;
-  padding: 0;
-  background-color: var(--vsc-bg-dark);
-  color: var(--vsc-text-primary);
-}
+/* ========================================
+   BASE STYLES
+======================================== */
 
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-/* VS Code-inspired scrollbars */
+html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 
+               'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  background-color: var(--vsc-bg-primary);
+  color: var(--vsc-text-primary);
+  height: 100%;
+  font-size: 13px;
+  line-height: 1.4;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  
+  /* Smooth theme transitions */
+  transition: background-color var(--transition-duration) ease,
+              color var(--transition-duration) ease;
+}
+
+body {
+  background-color: var(--vsc-bg-primary);
+  color: var(--vsc-text-primary);
+  height: 100%;
+  overflow: hidden;
+  
+  /* Smooth theme transitions */
+  transition: background-color var(--transition-duration) ease,
+              color var(--transition-duration) ease;
+}
+
+/* ========================================
+   MODERN SCROLLBARS
+======================================== */
+
 ::-webkit-scrollbar {
-  width: 14px;
-  height: 14px;
+  width: 10px;
+  height: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #2d2d2d;
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #424242;
-  border-radius: 7px;
-  border: 3px solid #2d2d2d;
+  background: var(--vsc-border-primary);
+  border-radius: 5px;
+  transition: background-color var(--transition-duration) ease;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #4f4f4f;
+  background: var(--vsc-text-muted);
 }
 
 ::-webkit-scrollbar-corner {
-  background: #2d2d2d;
+  background: var(--vsc-bg-primary);
 }
 
-/* Custom utility classes */
-.bg-vsc-dark {
-  background-color: var(--vsc-bg-dark);
+/* Firefox scrollbar styling */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--vsc-border-primary) transparent;
 }
 
-.bg-vsc-darker {
-  background-color: var(--vsc-bg-darker);
+/* ========================================
+   SYNTAX HIGHLIGHTING
+======================================== */
+
+.hljs {
+  background: transparent !important;
+  color: var(--vsc-text-primary) !important;
 }
 
-.bg-vsc-sidebar {
-  background-color: var(--vsc-bg-sidebar);
+/* Keywords */
+.hljs-keyword,
+.hljs-built_in,
+.hljs-type,
+.hljs-literal,
+.hljs-tag .hljs-name {
+  color: var(--vsc-syntax-keyword) !important;
+  font-weight: normal;
 }
 
-.text-vsc-primary {
-  color: var(--vsc-text-primary);
+/* Strings */
+.hljs-string,
+.hljs-title,
+.hljs-section {
+  color: var(--vsc-syntax-string) !important;
 }
 
-.text-vsc-secondary {
-  color: var(--vsc-text-secondary);
+/* Comments */
+.hljs-comment,
+.hljs-quote {
+  color: var(--vsc-syntax-comment) !important;
+  font-style: italic;
 }
 
-.border-vsc {
-  border-color: var(--vsc-border);
+/* Numbers */
+.hljs-number {
+  color: var(--vsc-syntax-number) !important;
 }
 
-/* Code highlighting overrides */
+/* Functions */
+.hljs-function,
+.hljs-title.function_,
+.hljs-title.function {
+  color: var(--vsc-syntax-function) !important;
+}
+
+/* Classes and types */
+.hljs-class,
+.hljs-title.class_,
+.hljs-title.class {
+  color: var(--vsc-syntax-type) !important;
+}
+
+/* Variables */
+.hljs-variable,
+.hljs-name,
+.hljs-template-variable,
+.hljs-params {
+  color: var(--vsc-syntax-variable) !important;
+}
+
+/* ========================================
+   TYPOGRAPHY & CODE
+======================================== */
+
+/* Monospace font for code areas */
+.font-mono,
+code,
+pre,
 .code-browser {
-  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', Consolas, monospace;
-  font-size: 14px;
+  font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+  font-feature-settings: 'liga' 0;
+}
+
+pre, code {
+  font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+  font-size: 13px;
   line-height: 1.5;
 }
 
-/* Ensure proper height for full-screen layout */
-html, body {
-  height: 100%;
-  overflow: hidden;
+pre {
+  background: var(--vsc-bg-primary);
+  color: var(--vsc-text-primary);
+  padding: 16px;
+  border: 1px solid var(--vsc-border-muted);
+  border-radius: 4px;
+  overflow-x: auto;
+  margin: 0;
+  
+  transition: background-color var(--transition-duration) ease,
+              color var(--transition-duration) ease,
+              border-color var(--transition-duration) ease;
 }
+
+code {
+  background: var(--vsc-bg-elevated);
+  color: var(--vsc-text-primary);
+  padding: 2px 4px;
+  border-radius: 2px;
+  font-size: 12px;
+  
+  transition: background-color var(--transition-duration) ease,
+              color var(--transition-duration) ease;
+}
+
+pre code {
+  background: transparent !important;
+  padding: 0;
+  border-radius: 0;
+  color: var(--vsc-text-primary);
+}
+
+/* ========================================
+   LINKS & SELECTION
+======================================== */
+
+a {
+  color: var(--vsc-accent-blue);
+  text-decoration: none;
+  transition: color var(--transition-duration) ease;
+}
+
+a:hover {
+  color: var(--vsc-accent-blue-hover);
+  text-decoration: underline;
+}
+
+::selection {
+  background: var(--vsc-selection-bg);
+  color: var(--vsc-text-primary);
+}
+
+::-moz-selection {
+  background: var(--vsc-selection-bg);
+  color: var(--vsc-text-primary);
+}
+
+/* ========================================
+   UTILITY CLASSES
+======================================== */
+
+/* Background utilities */
+.bg-vsc-bg-primary { background-color: var(--vsc-bg-primary); }
+.bg-vsc-bg-secondary { background-color: var(--vsc-bg-secondary); }
+.bg-vsc-bg-tertiary { background-color: var(--vsc-bg-tertiary); }
+.bg-vsc-bg-elevated { background-color: var(--vsc-bg-elevated); }
+.bg-vsc-bg-hover { background-color: var(--vsc-bg-hover); }
+.bg-vsc-bg-active { background-color: var(--vsc-bg-active); }
+.bg-vsc-bg-input { background-color: var(--vsc-bg-input); }
+
+/* Text utilities */
+.text-vsc-text-primary { color: var(--vsc-text-primary); }
+.text-vsc-text-secondary { color: var(--vsc-text-secondary); }
+.text-vsc-text-muted { color: var(--vsc-text-muted); }
+.text-vsc-text-disabled { color: var(--vsc-text-disabled); }
+.text-vsc-text-inverse { color: var(--vsc-text-inverse); }
+
+/* Border utilities */
+.border-vsc-border-primary { border-color: var(--vsc-border-primary); }
+.border-vsc-border-secondary { border-color: var(--vsc-border-secondary); }
+.border-vsc-border-muted { border-color: var(--vsc-border-muted); }
+.border-vsc-border-focus { border-color: var(--vsc-border-focus); }
+
+/* Accent utilities */
+.text-vsc-accent-blue { color: var(--vsc-accent-blue); }
+.bg-vsc-accent-blue { background-color: var(--vsc-accent-blue); }
+.text-vsc-accent-success { color: var(--vsc-accent-success); }
+.bg-vsc-accent-success { background-color: var(--vsc-accent-success); }
+
+/* Apply transitions to all utility classes */
+[class*="bg-vsc-"],
+[class*="text-vsc-"],
+[class*="border-vsc-"] {
+  transition: background-color var(--transition-duration) ease,
+              color var(--transition-duration) ease,
+              border-color var(--transition-duration) ease;
+}
+
+/* Hover utility classes */
+.hover\:bg-vsc-bg-hover:hover { background-color: var(--vsc-bg-hover); }
+.hover\:text-vsc-text-primary:hover { color: var(--vsc-text-primary); }
+.hover\:text-vsc-accent-blue:hover { color: var(--vsc-accent-blue); }
+
+/* ========================================
+   LAYOUT
+======================================== */
 
 #app, .layout-container {
   height: 100vh;
   display: flex;
   flex-direction: column;
-}
-
-/* Highlight.js VS Code theme customizations */
-
-/* Override highlight.js base colors */
-pre code {
-  @apply bg-transparent !important;
-}
-
-/* Base code text colors */
-html:not(.dark) pre code {
-  color: theme('colors.vsc-light-text-primary') !important;
-}
-
-.dark pre code {
-  color: theme('colors.vsc-text-primary') !important;
-}
-
-/* Light mode syntax highlighting */
-html:not(.dark) .hljs-keyword,
-html:not(.dark) .hljs-built_in,
-html:not(.dark) .hljs-type,
-html:not(.dark) .hljs-literal {
-  color: theme('colors.vsc-light-keyword') !important;
-}
-
-html:not(.dark) .hljs-string,
-html:not(.dark) .hljs-title,
-html:not(.dark) .hljs-section {
-  color: theme('colors.vsc-light-string') !important;
-}
-
-html:not(.dark) .hljs-comment {
-  color: theme('colors.vsc-light-comment') !important;
-}
-
-html:not(.dark) .hljs-number,
-html:not(.dark) .hljs-literal {
-  color: #098658 !important;
-}
-
-html:not(.dark) .hljs-name,
-html:not(.dark) .hljs-variable,
-html:not(.dark) .hljs-template-variable {
-  color: #001080 !important;
-}
-
-html:not(.dark) .hljs-function,
-html:not(.dark) .hljs-title.function_ {
-  color: #795E26 !important;
-}
-
-html:not(.dark) .hljs-class,
-html:not(.dark) .hljs-title.class_ {
-  color: #267F99 !important;
-}
-
-html:not(.dark) .hljs-attr,
-html:not(.dark) .hljs-attribute {
-  color: #E50000 !important;
-}
-
-html:not(.dark) .hljs-meta,
-html:not(.dark) .hljs-doctag {
-  color: #795E26 !important;
-}
-
-html:not(.dark) .hljs-symbol,
-html:not(.dark) .hljs-bullet,
-html:not(.dark) .hljs-link {
-  color: #001080 !important;
-}
-
-/* Make sure imported modules like 'os', 'shutil' are clearly visible */
-html:not(.dark) .hljs-title.class_,
-html:not(.dark) .hljs-class .hljs-title {
-  color: #267F99 !important;
-}
-
-html:not(.dark) .hljs-built_in {
-  color: #001080 !important;
-}
-
-/* Dark mode syntax highlighting */
-.dark .hljs-keyword,
-.dark .hljs-built_in,
-.dark .hljs-type,
-.dark .hljs-literal {
-  color: theme('colors.vsc-keyword') !important;
-}
-
-.dark .hljs-string,
-.dark .hljs-title,
-.dark .hljs-section {
-  color: theme('colors.vsc-string') !important;
-}
-
-.dark .hljs-comment {
-  color: theme('colors.vsc-comment') !important;
-}
-
-/* Additional code block styling */
-pre {
-  @apply bg-vsc-bg-medium border border-vsc-border-light rounded p-4 overflow-x-auto;
-}
-
-code {
-  @apply font-mono text-sm;
-}
-
-/* Links styling */
-a {
-  @apply text-vsc-accent-blue hover:underline;
-}
-
-/* Selection styling */
-::selection {
-  @apply bg-vsc-selection-bg;
-}
-
-::-moz-selection {
-  @apply bg-vsc-selection-bg;
 }
